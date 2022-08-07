@@ -1,10 +1,9 @@
 import "./App.css";
 import { makeStyles } from "@material-ui/core";
 import React from "react";
-import Header from "./components/Header";
-import Banner from "./components/banner/Banner";
-//import Table from './components/Table';
-import NewTable from "./components/NewTable";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage/HomePage";
+import CoinInfo from "./pages/CoinsInfo/CoinInfo";
 const useStyles = makeStyles(() => ({
   app: {
     backgroundColor: "black",
@@ -15,12 +14,15 @@ const useStyles = makeStyles(() => ({
 function App() {
   const classes = useStyles();
   return (
-    <div className={classes.app}>
-      <Header />
-      <Banner />
-      {/* <Table/> */}
-      <NewTable />
-    </div>
+    <BrowserRouter>
+      <div className={classes.app}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+
+          <Route path="/coins/:id" element={<CoinInfo />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

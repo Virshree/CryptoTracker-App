@@ -2,22 +2,28 @@ import MaterialTable from "@material-table/core";
 import React, { useState, useEffect } from "react";
 import { CryptoState } from "../CryptoContext";
 import axios from "axios";
-import { TrendingCoins } from "../api";
-
+import { SingleCoin, TrendingCoins } from "../api";
+import { useNavigate } from "react-router-dom";
 function NewTable() {
   const [cryptoList, setCryptoList] = useState([]);
   const { currency, symbol } = CryptoState();
 
   useEffect(() => {
     getTrendingData();
+    SingleCoin();
   }, [currency]);
   const getTrendingData = async () => {
     const { data } = await axios.get(TrendingCoins(currency));
-    //console.log(data);
+    console.log(data);
     setCryptoList(data);
   };
-  function handleClick(id) {
-    console.log(id);
+
+  const navigate = useNavigate();
+  async function handleClick(id) {
+    //console.log(id);
+    const { data } = await axios.get(SingleCoin(id));
+    console.log(data);
+    navigate(`/coins/${id}`);
   }
   return (
     <div style={{ margin: "80px" }}>
@@ -68,8 +74,9 @@ function NewTable() {
             render: (item) => <p>{item.market_cap.toString().slice(0, -8)}M</p>,
           },
         ]}
-        onRowClick={(event, rowData) => handleClick(rowData.cryptoList.id)}
         data={cryptoList}
+        title="Crypto Data"
+        onRowClick={(event, rowData) => handleClick(rowData.id)}
         options={{
           headerStyle: {
             backgroundColor: "gold",
@@ -77,7 +84,6 @@ function NewTable() {
             fontWeight: "700",
           },
         }}
-        title="Crypto Data"
       />
     </div>
   );
