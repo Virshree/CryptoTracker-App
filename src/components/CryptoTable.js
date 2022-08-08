@@ -26,7 +26,7 @@ function NewTable() {
     navigate(`/coins/${id}`);
   }
   return (
-    <div style={{ margin: "80px" }}>
+    <div style={{ margin: "100px", height: "120vh" }}>
       <MaterialTable
         columns={[
           {
@@ -71,7 +71,9 @@ function NewTable() {
           {
             title: "Market Cap",
             field: "market_cap",
-            render: (item) => <p>{item.market_cap.toString().slice(0, -8)}M</p>,
+            render: (item) => (
+              <p>{item.market_cap.toLocaleString().slice(0, -10)}M</p>
+            ),
           },
         ]}
         data={cryptoList}
@@ -82,6 +84,10 @@ function NewTable() {
             backgroundColor: "gold",
             color: "black",
             fontWeight: "700",
+          },
+          rowStyle: {
+            backgroundColor: "lavender",
+            color: "black",
           },
         }}
       />

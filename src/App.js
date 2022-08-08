@@ -4,6 +4,9 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
 import CoinInfo from "./pages/CoinsInfo/CoinInfo";
+import "@coreui/coreui/dist/css/coreui.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 const useStyles = makeStyles(() => ({
   app: {
     backgroundColor: "black",

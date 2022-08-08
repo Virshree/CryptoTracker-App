@@ -1,14 +1,13 @@
 import React from "react";
 import Banner from "../../components/banner/Banner";
 import Header from "../../components/Header";
-import NewTable from "../../components/NewTable";
-
+import CryptoTable from "../../components/CryptoTable";
 function HomePage() {
   return (
     <div>
       <Header />
       <Banner />
-      <NewTable />
+      <CryptoTable />
     </div>
   );
 }
