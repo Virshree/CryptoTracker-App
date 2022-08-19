@@ -2,9 +2,9 @@ import MaterialTable from "@material-table/core";
 import React, { useState, useEffect } from "react";
 import { CryptoState } from "../CryptoContext";
 import axios from "axios";
-import { SingleCoin, TrendingCoins } from "../api";
+import { CoinList, SingleCoin, TrendingCoins } from "../api";
 import { useNavigate } from "react-router-dom";
-function NewTable() {
+function CryptoTable() {
   const [cryptoList, setCryptoList] = useState([]);
   const { currency, symbol } = CryptoState();
 
@@ -13,7 +13,7 @@ function NewTable() {
     SingleCoin();
   }, [currency]);
   const getTrendingData = async () => {
-    const { data } = await axios.get(TrendingCoins(currency));
+    const { data } = await axios.get(CoinList(currency));
     console.log(data);
     setCryptoList(data);
   };
@@ -26,8 +26,14 @@ function NewTable() {
     navigate(`/coins/${id}`);
   }
   return (
-    <div style={{ margin: "100px", height: "120vh" }}>
+    <div className="vh-100">
       <MaterialTable
+        style={{
+          margin: "80px",
+          backgroundColor: "lightgray",
+          height: "auto",
+          marginBottom: "30px",
+        }}
         columns={[
           {
             title: " ",
@@ -85,14 +91,10 @@ function NewTable() {
             color: "black",
             fontWeight: "700",
           },
-          rowStyle: {
-            backgroundColor: "lavender",
-            color: "black",
-          },
         }}
       />
     </div>
   );
 }
 
-export default NewTable;
+export default CryptoTable;

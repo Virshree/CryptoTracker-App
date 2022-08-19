@@ -11,14 +11,14 @@ const useStyles = makeStyles(() => ({
   app: {
     backgroundColor: "black",
     color: "white",
-    minHeight: "100vh",
+    minHeight: "120vh",
   },
 }));
 function App() {
   const classes = useStyles();
   return (
     <BrowserRouter>
-      <div className={classes.app}>
+      <div className={classes.app} id="scroll">
         <Routes>
           <Route path="/" element={<HomePage />} />
 

@@ -57,7 +57,13 @@ function Header() {
               variant="outlined"
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              style={{ width: 100, height: 40, marginLeft: 15 }}
+              style={{
+                width: 100,
+                height: 40,
+                marginLeft: 15,
+                backgroundColor: "black",
+                color: "white",
+              }}
               value={currency}
               onChange={(e) => setCurrency(e.target.value)}
             >

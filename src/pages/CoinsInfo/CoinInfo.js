@@ -13,14 +13,14 @@ function CoinInfo() {
   const [coinData, setCoinData] = useState([]);
   const { symbol, currency } = CryptoState();
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
 
   useEffect(() => {
     fetchCoinsData();
   }, []);
   const fetchCoinsData = async () => {
     const { data } = await axios.get(SingleCoin(id));
-    console.log(data);
+    //console.log(data);
     setCoinData(data);
   };
 
@@ -40,11 +40,11 @@ function CoinInfo() {
     if (currency === "INR") {
       return coinData?.market_data?.market_cap[currency.toLowerCase()]
         .toLocaleString("en-IN")
-        .slice(0, -10);
+        .slice(0, -7);
     } else if (currency === "USD") {
       return coinData?.market_data?.market_cap[currency.toLowerCase()]
         .toLocaleString("en-US")
-        .slice(0, -10);
+        .slice(0, -7);
     }
   }
 
